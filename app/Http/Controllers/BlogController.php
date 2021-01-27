@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+
     public function index(Post $post)
     {
+        $databerita = $post->orderBy('created_at', 'desc')->where('category_id', 1)->paginate(3);
+        $data = $post->orderBy('created_at', 'desc')->paginate(3);
+        return view('blog', compact('data', 'databerita'));
+    }
 
-        $data = $post->orderBy('created_at', 'desc')->get();
-        return view('blog', compact('data'));
+    public function isiPost($slug)
+    {
+        $data = Post::where('slug', $slug)->get();
+        return view('blog.isi-post', compact('data'));
     }
 }
-

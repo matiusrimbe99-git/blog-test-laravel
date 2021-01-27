@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.post.index', compact('posts'));
     }
 
@@ -150,7 +150,7 @@ class PostController extends Controller
 
     public function viewTrash()
     {
-        $posts=Post::onlyTrashed()->paginate(10);
+        $posts=Post::orderBy('created_at', 'desc')->onlyTrashed()->paginate(10);
         return view('admin.post.trash', compact('posts'));
     }
 

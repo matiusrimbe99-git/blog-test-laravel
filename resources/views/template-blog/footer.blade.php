@@ -4,7 +4,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
-                    <img src="{{asset('frontend/assets/images/logo.svg')}}" class="footer-logo" alt="" />
+                    <a class="navbar-brand mt-1" href="#">
+                        <h1 class="text-white font-weight-lighter font-weight-bolder">MS Website</h1>
+                    </a>
                     <h5 class="font-weight-normal mt-4 mb-5">
                         Newspaper is your news, entertainment, music fashion website. We
                         provide you with the latest breaking news and videos straight from
@@ -12,17 +14,17 @@
                     </h5>
                     <ul class="social-media mb-3">
                         <li>
-                            <a href="#">
+                            <a href="https://www.facebook.com/matius.septi.14052017/" target="blank">
                                 <i class="mdi mdi-facebook"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://www.youtube.com" target="blank">
                                 <i class="mdi mdi-youtube"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://www.twitter.com/matiusrimbe" target="blank">
                                 <i class="mdi mdi-twitter"></i>
                             </a>
                         </li>

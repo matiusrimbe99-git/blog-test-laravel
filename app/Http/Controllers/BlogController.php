@@ -12,7 +12,7 @@ class BlogController extends Controller
     public function index(Post $post)
     {
         $databerita = $post->latest()->where('category_id', 1)->take(3)->get();
-        $data = $post->latest()->take(3)->get();
+        $data = $post->latest()->take(5)->get();
         return view('blog', compact('data', 'databerita'));
     }
 

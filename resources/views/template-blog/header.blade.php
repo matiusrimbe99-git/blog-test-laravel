@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>World Time</title>
+    <title>MS Website</title>
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendors/mdi/css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendors/aos/dist/aos.css/aos.css') }}" />
@@ -50,10 +50,10 @@
                                         <a href="#" class="nav-link"><i class="mdi mdi-magnify"></i></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('login') }}" class="nav-link">Login</a>
+                                        <a href="{{ route('login') }}" class="nav-link">Masuk</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">Sign in</a>
+                                        <a href="#" class="nav-link">Daftar</a>
                                     </li>
                                 </ul>
                             </div>
@@ -82,45 +82,45 @@
                                                 </button>
                                             </li>
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="{{ route('welcome') }}">Home</a>
+                                                <a class="nav-link" href="{{ route('welcome') }}">Beranda</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/magazine.html">MAGAZINE</a>
+                                                <a class="nav-link" href="pages/magazine.html">Berita</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/business.html">Business</a>
+                                                <a class="nav-link" href="pages/business.html">Artikel</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/sports.html">Sports</a>
+                                                <a class="nav-link" href="pages/sports.html">Kesenian</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/art.html">Art</a>
+                                                <a class="nav-link" href="pages/art.html">Politik</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/politics.html">POLITICS</a>
+                                                <a class="nav-link" href="pages/politics.html">Gaya Hidup</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="pages/travel.html">Travel</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/contactus.html">Contact</a>
+                                                <a class="nav-link" href="pages/contactus.html">Kontak</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <ul class="social-media">
                                     <li>
-                                        <a href="#">
+                                        <a href="https://www.facebook.com/matius.septi.14052017/" target="blank">
                                             <i class="mdi mdi-facebook"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="https://www.youtube.com" target="blank">
                                             <i class="mdi mdi-youtube"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="https://www.twitter.com/matiusrimbe" target="blank">
                                             <i class="mdi mdi-twitter"></i>
                                         </a>
                                     </li>

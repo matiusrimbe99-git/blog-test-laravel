@@ -25,7 +25,7 @@
                             </h2>
                             <p class="fs-13 text-muted mb-0">
                                 <span class="mr-2">{{ $posts->users->name }}
-                                </span>{{ $posts->created_at->diffForHumans() }}
+                                </span>{{ $posts->created_at }}
                             </p>
                             <p class="fs-15">
                                 {{substr($posts->content, 0, 100)}}
@@ -33,6 +33,7 @@
                         </div>
                     </div>
                     @endforeach
+                    {{ $data->links() }}
                 </div>
                 @include('template-blog.content-sidebar')
             </div>

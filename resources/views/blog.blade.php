@@ -35,7 +35,7 @@
                         <h5>{{ $berita->title }}</h5>
                         <div class="fs-12">
                             <span class="mr-2">{{ $berita->users->name }}
-                            </span>{{ $berita->created_at->diffForHumans() }}
+                            </span>{{ $berita->created_at }}
                         </div>
                     </div>
                     <div class="rotate-img">
@@ -98,7 +98,7 @@
                         </h2>
                         <div class="fs-13 mb-2">
                             <span class="mr-2">{{ $post->users->name }}
-                            </span>{{ $post->created_at->diffForHumans() }}
+                            </span>{{ $post->created_at }}
                         </div>
                         <p class="mb-0">
                             {{  implode(" ", array_slice(explode(" ", $post->content),0,15))  }}

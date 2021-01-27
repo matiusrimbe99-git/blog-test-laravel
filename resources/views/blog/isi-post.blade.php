@@ -12,7 +12,7 @@
                         </h1>
                         <p class="fs-13 text-muted mb-0">
                             <span class="mr-2">{{ $content->category->name }}
-                            </span>{{ $content->created_at->diffForHumans() }}
+                            </span>{{ $content->created_at }}
                         </p>
                         <div class="rotate-img">
                             <img src="{{asset($content->image)}}" alt="banner"

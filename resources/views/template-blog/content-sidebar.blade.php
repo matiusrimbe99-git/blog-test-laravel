@@ -14,7 +14,7 @@
                             {{ $berita->title }}
                         </h5>
                         <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">{{ $berita->users->name }} </span>{{ $berita->created_at->diffForHumans() }}
+                            <span class="mr-2">{{ $berita->users->name }} </span>{{ $berita->created_at }}
                         </p>
                     </div>
                     <div class="col-sm-4">

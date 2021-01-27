@@ -13,6 +13,8 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/modules/summernote/summernote-bs4.css')}}">
+    
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">

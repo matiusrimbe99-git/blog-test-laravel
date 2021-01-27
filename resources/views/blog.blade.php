@@ -76,7 +76,7 @@
                     <div class="card-title">
                         <h2>Postingan Terbaru</h2>
                     </div>
-                    <p class="mb-4"><a class="nav-link" href="">Lihat Semua Postingan</a></p>
+                    <p class="mb-4"><a class="nav-link" href="{{ route('blog.list-post') }}">Lihat Semua</a></p>
                 </div>
                 @foreach ($data as $post)
                 <div class="row">
@@ -101,7 +101,7 @@
                             </span>{{ $post->created_at->diffForHumans() }}
                         </div>
                         <p class="mb-0">
-                            {{implode(" ", array_slice(explode(" ", $post->content),0,15))}}
+                            {{  implode(" ", array_slice(explode(" ", $post->content),0,15))  }}
                         </p>
                     </div>
                 </div>

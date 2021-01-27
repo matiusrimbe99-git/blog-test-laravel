@@ -62,7 +62,7 @@
     </div>
     <div class="form-group">
         <label>Konten</label>
-        <textarea name="content" class="form-control">{{ $post->content }}</textarea>
+        <textarea name="content" class="summernote">{{ $post->content }}</textarea>
     </div>
     <div class="form-group">
         <label>Thumbnail (<span class="text-danger text-weight-bold">*Kosongkan jika tidak ingin mengubah gambar</span>)</label>

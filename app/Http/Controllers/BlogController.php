@@ -11,14 +11,22 @@ class BlogController extends Controller
 
     public function index(Post $post)
     {
-        $databerita = $post->orderBy('created_at', 'desc')->where('category_id', 1)->paginate(3);
-        $data = $post->orderBy('created_at', 'desc')->paginate(3);
+        $databerita = $post->latest()->where('category_id', 1)->take(3)->get();
+        $data = $post->latest()->take(3)->get();
         return view('blog', compact('data', 'databerita'));
     }
 
-    public function isiPost($slug)
+    public function isiPost(Post $post, $slug)
     {
+        $databerita = $post->latest()->where('category_id', 1)->take(3)->get();
         $data = Post::where('slug', $slug)->get();
-        return view('blog.isi-post', compact('data'));
+        return view('blog.isi-post', compact('data','databerita'));
+    }
+
+    public function listpost(Post $post)
+    {
+        $databerita = $post->latest()->where('category_id', 1)->take(3)->get();
+        $data = $post->latest()->paginate(6);
+        return view('blog.list-post', compact('data', 'databerita'));
     }
 }

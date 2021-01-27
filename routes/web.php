@@ -23,6 +23,7 @@ use App\Http\Controllers\UserController;
 Auth::routes();
 Route::get('/', [BlogController::class, 'index'])->name('welcome');
 Route::get('/content/{slug}', [BlogController::class, 'isiPost'])->name('blog.isi');
+Route::get('/list-content', [BlogController::class, 'listPost'])->name('blog.list-post');
 
 
 Route::group(['middleware' => ['auth']], function () {

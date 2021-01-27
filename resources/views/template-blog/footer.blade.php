@@ -88,37 +88,15 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <h3 class="font-weight-bold mb-3">CATEGORIES</h3>
+                    <h3 class="font-weight-bold mb-3">KATEGORI</h3>
+                    @foreach ($category_widget as $category3)
                     <div class="footer-border-bottom pb-2">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 font-weight-600">Magazine</h5>
-                            <div class="count">1</div>
+                            <h5 class="mb-0 font-weight-600">{{ $category3->name }}</h5>
+                            <div class="count">{{ $category3->posts->count() }}</div>
                         </div>
                     </div>
-                    <div class="footer-border-bottom pb-2 pt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 font-weight-600">Business</h5>
-                            <div class="count">1</div>
-                        </div>
-                    </div>
-                    <div class="footer-border-bottom pb-2 pt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 font-weight-600">Sports</h5>
-                            <div class="count">1</div>
-                        </div>
-                    </div>
-                    <div class="footer-border-bottom pb-2 pt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 font-weight-600">Arts</h5>
-                            <div class="count">1</div>
-                        </div>
-                    </div>
-                    <div class="pt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 font-weight-600">Politics</h5>
-                            <div class="count">1</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

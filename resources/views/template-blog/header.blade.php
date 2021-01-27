@@ -53,7 +53,7 @@
                                         <a href="{{ route('login') }}" class="nav-link">Masuk</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">Daftar</a>
+                                        <a href="{{ route('register') }}" class="nav-link">Daftar</a>
                                     </li>
                                 </ul>
                             </div>
@@ -61,10 +61,8 @@
                         <div class="navbar-bottom">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    {{-- <a class="navbar-brand" href="#"><img
-                                            src="{{asset('frontend/assets/images/logo.svg')}}" alt="" />
-                                    </a> --}}
-                                    <a class="navbar-brand mt-1" href="#"><h1 class="text-white font-weight-lighter font-weight-bolder">MS Website</h1>
+                                    <a class="navbar-brand mt-1" href="#">
+                                        <h1 class="text-white font-weight-lighter font-weight-bolder">MS Website</h1>
                                     </a>
                                 </div>
                                 <div>
@@ -84,24 +82,11 @@
                                             <li class="nav-item active">
                                                 <a class="nav-link" href="{{ route('welcome') }}">Beranda</a>
                                             </li>
+                                            @foreach ($category_widget as $category)
                                             <li class="nav-item">
-                                                <a class="nav-link" href="pages/magazine.html">Berita</a>
+                                                <a class="nav-link" href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pages/business.html">Artikel</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pages/sports.html">Kesenian</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pages/art.html">Politik</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pages/politics.html">Gaya Hidup</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pages/travel.html">Travel</a>
-                                            </li>
+                                            @endforeach
                                             <li class="nav-item">
                                                 <a class="nav-link" href="pages/contactus.html">Kontak</a>
                                             </li>
@@ -143,8 +128,7 @@
                             </p>
                         </div>
                         <div class="d-flex">
-                            <span class="mr-3 text-danger">Wed, March 4, 2020</span>
-                            <span class="text-danger">30°C,London</span>
+                            <span class="mr-3 text-danger">{{ Carbon\Carbon::now()->translatedFormat('l, d M Y | H:i') }}
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 
+
 class Post extends Model
 {
     use HasFactory;
@@ -38,6 +39,6 @@ class Post extends Model
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('d F Y');
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('d F Y, H:i');
     }
 }

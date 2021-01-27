@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Category extends Model
 {
@@ -13,4 +14,18 @@ class Category extends Model
         'slug',
     ];
 
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('d F Y, H:i');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

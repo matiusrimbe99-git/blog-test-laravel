@@ -10,8 +10,8 @@
                         <h1 class="font-weight-600 mb-1">
                             {{ $content->title }}
                         </h1>
-                        <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">{{ $content->category->name }}
+                        <p class="text-muted mb-0">
+                            <span class="mr-2 badge badge-danger">{{ $content->category->name }}
                             </span>{{ $content->created_at }}
                         </p>
                         <div class="rotate-img">
@@ -24,7 +24,7 @@
                     </div>
                     
                     <div class="d-lg-flex">
-                        <span class="fs-16 font-weight-600 mr-2 mb-1">Tags</span>
+                        <span class="fs-16 font-weight-600 mr-2 mb-1">Tags:</span>
                         @foreach ($content->tags as $tag)
                             <span class="badge badge-outline-dark mr-2 mb-1">{{ $tag->name }}</span>
                         @endforeach

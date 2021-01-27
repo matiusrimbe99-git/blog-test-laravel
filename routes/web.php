@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/', [BlogController::class, 'index'])->name('welcome');
 Route::get('/content/{slug}', [BlogController::class, 'isiPost'])->name('blog.isi');
 Route::get('/list-content', [BlogController::class, 'listPost'])->name('blog.list-post');
+Route::get('/list-category/{category}', [BlogController::class, 'listCategory'])->name('blog.category');
 
 
 Route::group(['middleware' => ['auth']], function () {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -36,11 +37,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:3|max:50',
+        $rules = [
+            'name' => 'required',
             'email' => 'required|email|unique:users',
             'type_user' => 'required',
-        ]);
+        ];
+
+        $messages = [
+            'name.required' => 'Nama User wajib diisi.',
+            'email.required' => 'Email pilih kategori.',
+            'email.email' => 'Email tidak valid.',
+            'email.unique' => 'Email yang dimasukkan sudah terdaftar.',
+            'type_user.required' => 'Wajib memilih tipe user.',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         if ($request->input('password')) {
             $password = bcrypt($request->password);
@@ -55,7 +69,7 @@ class UserController extends Controller
             'password' => $password,
         ]);
 
-        return redirect()->back()->with('success', 'User berhasil ditambahkan');
+        return redirect()->back()->with('user_store', 'User berhasil ditambahkan');
     }
 
     /**
@@ -90,6 +104,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            'name' => 'required',
+            'type_user' => 'required',
+        ];
+
+        $messages = [
+            'name.required' => 'Nama User wajib diisi.',
+            'type_user.required' => 'Wajib memilih tipe user.',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
@@ -112,7 +140,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($user_data);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil diupdate');
+        return redirect()->route('user.index')->with('user_update', 'User berhasil diupdate');
     }
 
     /**
@@ -125,6 +153,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->back()->with('success','User berhasil dihapus');
+        return redirect()->back()->with('user_delete', 'User berhasil dihapus');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class TagController extends Controller
@@ -15,7 +16,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::paginate(10);
+        $tags = Tag::paginate(5);
         return view('admin.tag.index', compact('tags'));
     }
 
@@ -38,9 +39,19 @@ class TagController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'name' => 'required|max:20|min:3',
-        ]);
+        $rules = [
+            'name' => 'required|min:3',
+        ];
+
+        $messages = [
+            'name.required' => 'Nama tags wajib diisi.',
+            'name.min' => 'Nama tags minimal 3 karakter.',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
 
         Tag::create([
@@ -48,7 +59,7 @@ class TagController extends Controller
             'slug' => Str::slug($request->name),
         ]);
 
-        return redirect()->back()->with('success', 'Tag berhasil ditambahkan');
+        return redirect()->back()->with('tag_store','Tag berhasil ditambahkan');
     }
 
     /**
@@ -83,9 +94,19 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|max:20|min:3'
-        ]);
+        $rules = [
+            'name' => 'required|min:3',
+        ];
+
+        $messages = [
+            'name.required' => 'Nama tags wajib diisi.',
+            'name.min' => 'Nama tags minimal 3 karakter.',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         $tag_data = [
             'name' => $request->name,
@@ -93,7 +114,7 @@ class TagController extends Controller
         ];
 
         Tag::whereId($id)->update($tag_data);
-        return redirect()->route('tag.index')->with('success', 'Tag berhasil diupdate');
+        return redirect()->route('tag.index')->with('tag_update', 'Tag berhasil diupdate');
     }
 
     /**
@@ -104,8 +125,8 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $tag=Tag::findOrFail($id);
+        $tag = Tag::findOrFail($id);
         $tag->delete();
-        return redirect()->back()->with('success', 'Tag berhasil dihapus');
+        return redirect()->back()->with('tag_delete', 'Tag berhasil dihapus');
     }
 }

@@ -53,7 +53,7 @@
                                         <a href="{{ route('login') }}" class="nav-link">Masuk</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('register') }}" class="nav-link">Daftar</a>
+                                        <a href="#" class="nav-link">Kontak Kami</a>
                                     </li>
                                 </ul>
                             </div>
@@ -84,12 +84,10 @@
                                             </li>
                                             @foreach ($category_widget as $category)
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a>
                                             </li>
                                             @endforeach
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pages/contactus.html">Kontak</a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -128,7 +126,8 @@
                             </p>
                         </div>
                         <div class="d-flex">
-                            <span class="mr-3 text-danger">{{ Carbon\Carbon::now()->translatedFormat('l, d M Y | H:i') }}
+                            <span
+                                class="mr-3 text-danger">{{ Carbon\Carbon::now()->translatedFormat('l, d M Y | H:i') }}
                         </div>
                     </div>
                 </div>

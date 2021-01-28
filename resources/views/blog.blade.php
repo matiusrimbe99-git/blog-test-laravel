@@ -27,10 +27,6 @@
                     <div class="card-title mb-0">
                         <h2>Berita Terbaru</h2>
                     </div>
-                    <p>
-                        <a class="nav-link" href="{{ route('blog.category', $category_widget['0']->slug) }}">Lihat
-                            Semua</a>
-                    </p>
                 </div>
 
                 @foreach ($data as $berita)
@@ -89,8 +85,11 @@
                     <div class="card-title mt-0">
                         <h2>POSTINGAN TERBARU</h2>
                     </div>
-                    <div class="card-title mt-0"><a class="nav-link" href="{{ route('blog.list-post') }}">Lihat
-                            Semua</a></div>
+                    <div class="card-title mt-0">
+                        <a class="nav-link" href="{{ route('blog.list-post') }}"><h5>Lihat
+                        Semua</h5>
+                        </a>
+                    </div>
                 </div>
                 @foreach ($data as $post)
                 <div class="row">

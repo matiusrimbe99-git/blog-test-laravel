@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -18,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.post.index', compact('posts'));
     }
 
@@ -29,9 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags=Tag::all();
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.post.create', compact('categories','tags'));
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -42,19 +43,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $rules = [
             'title' => 'required',
             'category_id' => 'required',
             'content' => 'required',
             'image' => 'required|image|max:2048',
-        ]);
+        ];
+
+        $messages = [
+            'title.required' => 'Judul wajib diisi.',
+            'category_id.required' => 'Wajib pilih kategori.',
+            'content.required' => 'Konten wajib diisi.',
+            'image.required' => 'Thumbnail wajib ada.',
+            'image.image' => 'Thumbnail harus berupa gambar.',
+            'image.max' => 'Ukuran Thumbnail tidak boleh lebih dari 2 MB.'
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         $image = $request->image;
         $new_image = time() . $image->getClientOriginalName();
         $post = Post::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
-            'users_id'=>Auth::id(),
+            'users_id' => Auth::id(),
             'category_id' => $request->category_id,
             'content' => $request->content,
             'image' => 'uploads/posts/' . $new_image,
@@ -63,7 +78,7 @@ class PostController extends Controller
         $post->tags()->attach($request->tags);
 
         $image->move('uploads/posts/', $new_image);
-        return redirect()->back()->with('success', 'Postingan berhasil ditambahkan');
+        return redirect()->back()->with('post_store', 'Postingan berhasil ditambahkan');
     }
 
     /**
@@ -89,7 +104,7 @@ class PostController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
 
-        return view('admin.post.edit',compact('post','tags','categories'));
+        return view('admin.post.edit', compact('post', 'tags', 'categories'));
     }
 
     /**
@@ -101,13 +116,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $rules = [
             'title' => 'required',
             'category_id' => 'required',
             'content' => 'required',
-        ]);
+            'image' => 'image|max:2048',
+        ];
 
-        $post=Post::findOrFail($id);
+        $messages = [
+            'title.required' => 'Judul wajib diisi.',
+            'category_id.required' => 'Wajib pilih kategori.',
+            'content.required' => 'Konten wajib diisi.',
+            'image.image' => 'Thumbnail harus berupa gambar.',
+            'image.max' => 'Ukuran Thumbnail tidak boleh lebih dari 2 MB.'
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+
+        $post = Post::findOrFail($id);
 
         if ($request->has('image')) {
             $image = $request->image;
@@ -132,7 +161,7 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
         $post->update($post_data);
-        return redirect()->route('post.index')->with('success', 'Postingan berhasil diupdate');
+        return redirect()->route('post.index')->with('post_update', 'Postingan berhasil diupdate');
     }
 
     /**
@@ -145,26 +174,26 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect()->back()->with('success','Postingan dipindahkan ke Daftar Sampah Postingan');
+        return redirect()->back()->with('post_trash', 'Postingan dipindahkan ke Daftar Sampah Postingan');
     }
 
     public function viewTrash()
     {
-        $posts=Post::orderBy('created_at', 'desc')->onlyTrashed()->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->onlyTrashed()->paginate(5);
         return view('admin.post.trash', compact('posts'));
     }
 
     public function restore($id)
     {
-        $post = Post::withTrashed()->where('id',$id)->first();
+        $post = Post::withTrashed()->where('id', $id)->first();
         $post->restore();
-        return redirect()->back()->with('success', 'Postingan berhasil direstore ke Daftar Postingan');
+        return redirect()->back()->with('post_restore', 'Postingan berhasil direstore ke Daftar Postingan');
     }
 
     public function delete($id)
     {
         $post = Post::withTrashed()->where('id', $id)->first();
         $post->forceDelete();
-        return redirect()->back()->with('success', 'Postingan berhasil dihapus permanen');
+        return redirect()->back()->with('post_delete', 'Postingan berhasil dihapus permanen');
     }
 }

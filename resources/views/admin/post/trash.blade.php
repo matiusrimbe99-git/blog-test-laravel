@@ -1,51 +1,96 @@
 @extends('template-backend.home')
+@section('title', 'MS Website | Sampah Postingan')
 @section('sub-judul','Daftar Sampah Postingan')
 @section('content')
-@if (Session::has('success'))
-<div class="alert alert-success alert-dismissible show fade">
-    <div class="alert-body">
-        <button class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        {{ Session('success') }}
+<div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap">No</th>
+                            <th>Judul</th>
+                            <th class="text-nowrap">Penulis</th>
+                            <th class="text-nowrap">Kategori</th>
+                            <th>Tags</th>
+                            <th>Thumbnail</th>
+                            <th class="text-nowrap">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($posts as $index=>$post)
+                        <tr>
+                            <td class="text-nowrap">
+                                {{ $index + $posts->firstItem() }}
+                            </td>
+                            <td>
+                                {{ $post->title }}
+                            </td>
+                            <td class="text-nowrap">
+                                <a href="#" class="font-weight-600"><img
+                                        src="{{ asset('assets/img/avatar/avatar-1.png') }}" alt="avatar" width="30"
+                                        class="rounded-circle mr-1">
+                                    {{ $post->users->name }}</a>
+                            </td>
+                            <td class="text-nowrap">
+                                {{ $post->category->name }}
+                            </td>
+                            <td>
+                                @foreach ($post->tags as $tag)
+                                <span class="badge badge-info mb-1">{{ $tag->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                <img src="{{ asset($post->image) }}" alt="thumbnail" class="img-fluid p-1"
+                                    style="width:100px">
+                            </td>
+                            <td class="text-nowrap">
+                                <form id="delete-post-form" action="{{ route('post.delete', $post->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{ route('post.restore', $post->id) }}"
+                                        class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Restore"><i
+                                            class="fas fa-arrow-circle-up"></i></a>
+                                    <button onclick="return 'Hai'" type="submit" id="delete-post"
+                                        class="btn btn-danger btn-action" data-toggle="tooltip" title="Hapus"><i
+                                            class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-@endif
-<table class="table table-bordered table-striped table-hover table-sm">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama Postingan</th>
-            <th>Kategori</th>
-            <th>Tags</th>
-            <th>Thumbnail</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($posts as $index=>$post)
-        <tr>
-            <td>{{ $index + $posts->firstItem() }}</td>
-            <td>{{ $post->title }}</td>
-            <td>{{ $post->category->name }}</td>
-            <td>@foreach ($post->tags as $tag)
-                <span class="badge badge-info">{{ $tag->name }}</span>
-                @endforeach</td>
-            <td>
-                <img src="{{ asset($post->image) }}" alt="thumbnail" class="img-fluid" style="width:100px">
-            </td>
-            <td>
-                <form action="{{ route('post.delete', $post->id) }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <a href="{{ route('post.restore', $post->id) }}" class="btn btn-info">Restore</a>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-{{ $posts->links() }}
-
+<div class=" pagination justify-content-center">{{ $posts->links() }}</div>
 @endsection
+@push('custom_script')
+<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/js/page/modules-sweetalert.js') }}"></script>
+@if (Session::has('post_restore'))
+<script>
+    swal({
+    title: "Berhasil",
+    text: "{{ Session::get('post_restore') }}",
+    icon: "success",
+    button: "Tutup",
+    });
+</script>
+@endif
+@if (Session::has('post_delete'))
+<script>
+    swal({
+    title: "Berhasil",
+    text: "{{ Session::get('post_delete') }}",
+    icon: "success",
+    button: "Tutup",
+    });
+</script>
+@endif
+@endpush

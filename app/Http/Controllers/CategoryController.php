@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::paginate(5);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -38,16 +39,26 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'name' => 'required|min:3'
-        ]);
+        $rules = [
+            'name' => 'required|min:3',
+        ];
+
+        $messages = [
+            'name.required' => 'Nama kategori wajib diisi.',
+            'name.min' => 'Nama kategori minimal 3 karakter.',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
 
         ]);
-        return redirect()->back()->with('success', 'Kategori berhasil disimpan');
+        return redirect()->back()->with('category_store', 'Kategori berhasil disimpan');
     }
 
     /**
@@ -82,9 +93,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $rules = [
             'name' => 'required|min:3',
-        ]);
+        ];
+
+        $messages = [
+            'name.required' => 'Nama kategori wajib diisi.',
+            'name.min' => 'Nama kategori minimal 3 karakter.',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
 
         $category_data = [
             'name' => $request->name,
@@ -92,7 +113,7 @@ class CategoryController extends Controller
         ];
 
         Category::whereId($id)->update($category_data);
-        return redirect()->route('category.index')->with('success','Kategori berhasil diupdate');
+        return redirect()->route('category.index')->with('category_update','Kategori berhasil diupdate');
     }
 
     /**
@@ -105,6 +126,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->back()->with('success','Kategori berhasil dihapus');
+        return redirect()->back()->with('category_delete','Kategori berhasil dihapus');
     }
 }

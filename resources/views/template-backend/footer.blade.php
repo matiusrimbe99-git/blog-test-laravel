@@ -1,7 +1,9 @@
 <footer class="main-footer">
-    <div class="footer-left">
-        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval
-            Azhar</a>
+    <div class="footer-center">
+        Copyright &copy; 2018 <div class="bullet"></div> Design By <a target="blank" href="https://nauval.in/">Muhamad
+            Nauval Azhar</a>
+        <div class="bullet"></div> Develop By <a target="blank"
+            href="https://www.facebook.com/matius.septi.14052017/">Matius Rimbe</a>
     </div>
     <div class="footer-right">
 
@@ -19,17 +21,18 @@
 <script src="{{asset('assets/modules/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/stisla.js')}}"></script>
 
-<!-- JS Libraies -->
-<script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
-<script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
-<script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+<!-- JS Libraries -->
+@stack('custom_script')
 
 <!-- Page Specific JS File -->
-<script src="{{ asset('assets/js/page/modules-toastr.js') }}"></script>
+@stack('custom_script')
+
 
 <!-- Template JS File -->
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
+
+
 </body>
 
 </html>

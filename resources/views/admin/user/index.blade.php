@@ -18,7 +18,7 @@
                                     <th>Nama User</th>
                                     <th>Email</th>
                                     <th>Type</th>
-                                    <th>Action</th>
+                                    <th class="text-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,7 +34,7 @@
                                         <span class="badge badge-warning">Penulis</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                             @csrf
                                             @method('delete')

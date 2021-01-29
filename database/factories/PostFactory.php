@@ -27,8 +27,8 @@ class PostFactory extends Factory
         return [
             'title' => $title = $this->faker->paragraph(1),
             'slug' => Str::slug($title),
-            'users_id' => $this->faker->numberBetween(1, 20),
-            'category_id' => $this->faker->numberBetween(1,7),
+            'users_id' => $this->faker->numberBetween(1, 2),
+            'category_id' => $this->faker->numberBetween(1,5),
             'content' => $this->faker->paragraph(50),
             'image' =>'uploads\posts\1611828529WhatsApp-Image-2021-01-24-at-17.28.36-640x427.jpeg',
         ];

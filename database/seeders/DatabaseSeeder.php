@@ -14,10 +14,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Post::factory(50)->create();
-        \App\Models\User::factory(18)->create();
-        \App\Models\Category::factory(7)->create();
-        \App\Models\Tag::factory(12)->create();
+        // \App\Models\User::factory(18)->create();
+        // \App\Models\Category::factory(7)->create();
+        // \App\Models\Tag::factory(12)->create();
         $this->call(UserSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(TagSeeder::class);
         
     }
 }

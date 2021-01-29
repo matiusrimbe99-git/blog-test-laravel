@@ -30,7 +30,7 @@ class PostFactory extends Factory
             'users_id' => $this->faker->numberBetween(1, 2),
             'category_id' => $this->faker->numberBetween(1,5),
             'content' => $this->faker->paragraph(50),
-            'image' =>'uploads\posts\1611828529WhatsApp-Image-2021-01-24-at-17.28.36-640x427.jpeg',
+            'image' => 'assets/img/news/img01.jpg',
         ];
     }
 }

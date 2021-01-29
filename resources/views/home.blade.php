@@ -96,7 +96,7 @@
                                     </div>
                                 </td>
                                 <td class="text-nowrap">
-                                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png"
+                                    <a href="#" class="font-weight-600"><img src="{{ asset($item->users->image) }}"
                                             alt="avatar" width="30" class="rounded-circle mr-1">
                                         {{ $item->users->name }}</a>
                                 </td>
@@ -131,7 +131,7 @@
                     <div class="col-6 col-sm-3 col-lg-3 mb-4 mb-md-0">
                         <div class="avatar-item mb-3">
                             <img alt="image"
-                                src="@if ($user->type_user){{asset('assets/img/avatar/avatar-4.png') }} @else {{asset('assets/img/avatar/avatar-1.png') }} @endif"
+                                src="{{ asset($user->image) }}"
                                 class="img-fluid" data-toggle="tooltip" title="{{ $user->name }}">
                             <div class="avatar-badge" title="@if ($user->type_user)Administrator @else Penulis @endif"
                                 data-toggle="tooltip"><i

@@ -1,6 +1,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | Kategori')
 @section('sub-judul','Daftar Kategori')
+@section('nav-menu','Daftar Kategori')
 @section('content')
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
     <a href="{{ route('category.create') }}" class="btn btn-info mb-4">Tambah Kategori</a>

@@ -1,6 +1,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | Postingan')
 @section('sub-judul','Daftar Postingan')
+@section('nav-menu','Daftar Postingan')
 @section('content')
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
     <a href="{{ route('post.create') }}" class="btn btn-info mb-4">Tambah Postingan</a>
@@ -29,7 +30,7 @@
                                 {{ $post->title }}
                             </td>
                             <td class="text-nowrap">
-                                <a href="#" class="font-weight-600"><img src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                <a href="#" class="font-weight-600"><img src="{{ asset($post->users->image) }}"
                                         alt="avatar" width="30" class="rounded-circle mr-1">
                                     {{ $post->users->name }}</a>
                             </td>

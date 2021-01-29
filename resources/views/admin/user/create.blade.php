@@ -1,6 +1,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | Tambah User')
 @section('sub-judul','Tambah User')
+@section('nav-menu','Tambah User')
 @section('content')
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
     <div class="row mt-5">
@@ -28,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="text" name="password" class="form-control" placeholder="Masukkan password">
+                            <input type="text" name="password" class="form-control" placeholder="Jika tidak diisi, password default : password">
                         </div>
                         <button type="submit" class="btn btn-primary px-4 float-right">Simpan User</button>
                     </form>

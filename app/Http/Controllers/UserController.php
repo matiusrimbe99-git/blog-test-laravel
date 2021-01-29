@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -67,6 +68,8 @@ class UserController extends Controller
             'email' => $request->email,
             'type_user' => $request->type_user,
             'password' => $password,
+            'image' => 'assets/img/avatar/avatar-1.png',
+            'bio' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
         ]);
 
         return redirect()->back()->with('user_store', 'User berhasil ditambahkan');
@@ -95,6 +98,11 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user'));
     }
 
+    public function editProfil()
+    {
+        return view('admin.user.edit-profil');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -106,23 +114,17 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'type_user' => 'required',
         ];
 
         $messages = [
             'name.required' => 'Nama User wajib diisi.',
-            'type_user.required' => 'Wajib memilih tipe user.',
         ];
+
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
-
-        $this->validate($request, [
-            'name' => 'required|min:3|max:50',
-            'type_user' => 'required',
-        ]);
 
         if ($request->input('password')) {
             $user_data = [
@@ -143,6 +145,36 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('user_update', 'User berhasil diupdate');
     }
 
+    public function updateProfil(Request $request)
+    {
+
+
+        $user = User::findOrFail(Auth::user()->id);
+
+
+        if ($request->has('image')) {
+            $image = $request->image;
+            $new_image = time() . $image->getClientOriginalName();
+            $image->move('uploads/profil/', $new_image);
+
+            $user_data = [
+                'name' => $request->name,
+                'image' => 'uploads/profil/' . $new_image,
+                'bio' => $request->bio,
+            ];
+        } else {
+            $user_data = [
+                'name' => $request->name,
+                'bio' => $request->bio,
+            ];
+        }
+
+
+        $user->update($user_data);
+
+        return redirect()->route('user.edit-profil')->with('user_update_profil', 'Profil Anda berhasil diupdate');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -156,3 +188,4 @@ class UserController extends Controller
         return redirect()->back()->with('user_delete', 'User berhasil dihapus');
     }
 }
+

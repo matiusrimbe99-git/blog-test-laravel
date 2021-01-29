@@ -1,6 +1,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | Tambah Kategori')
 @section('sub-judul','Tambah Kategori')
+@section('nav-menu','Tambah Kategori')
 @section('content')
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
     <div class="row mt-5">

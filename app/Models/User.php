@@ -23,6 +23,8 @@ class User extends Authenticatable
         'type_user',
         'email',
         'password',
+        'image',
+        'bio',
     ];
 
     /**
@@ -46,7 +48,7 @@ class User extends Authenticatable
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->translatedFormat('d F Y, H:i');
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('d M Y');
     }
 
 }

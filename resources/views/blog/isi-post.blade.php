@@ -72,7 +72,7 @@
                             <div class="d-lg-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="rotate-img">
-                                        <img src="{{asset('frontend/assets/images/faces/face1.jpg')}}" alt="banner"
+                                        <img src="{{asset($content->users->image)}}" alt="banner"
                                             class="img-fluid img-rounded mr-3" />
                                     </div>
                                     <div>

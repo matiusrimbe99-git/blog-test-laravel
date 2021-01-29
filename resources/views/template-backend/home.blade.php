@@ -7,6 +7,7 @@
     <title>@yield('title', 'MS Website')</title>
 
     <!-- General CSS Files -->
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" />
     <link rel="stylesheet" href="{{asset('assets/modules/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/modules/fontawesome/css/all.min.css')}}">
 
@@ -47,13 +48,13 @@
 
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="{{asset('assets/img/avatar/avatar-1.png')}}"
+                            <img alt="image" src="{{asset(Auth::user()->image)}}"
                                 class="mr-1 rounded-circle">
                             <div class="d-sm-none d-lg-inline-block">Hai, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
 
-                            <a href="features-profile.html" class="dropdown-item has-icon">
+                            <a href="{{ route('user.edit-profil') }}" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Edit Profil
                             </a>
                             <div class="dropdown-divider"></div>
@@ -77,6 +78,10 @@
                 <section class="section">
                     <div class="section-header">
                         <h1>@yield('sub-judul')</h1>
+                        <div class="section-header-breadcrumb">
+                            <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
+                            <div class="breadcrumb-item">@yield('nav-menu')</div>
+                        </div>
                     </div>
 
                     <div class="section-body">

@@ -5,6 +5,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | Tambah Postingan')
 @section('sub-judul','Tambah Postingan')
+@section('nav-menu','Tambah Postingan')
 @section('content')
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
     <div class="card">

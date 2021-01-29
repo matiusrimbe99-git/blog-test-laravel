@@ -1,6 +1,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | Tags')
 @section('sub-judul','Daftar Tags')
+@section('nav-menu','Daftar Tags')
 @section('content')
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">
     <a href="{{ route('tag.create') }}" class="btn btn-info mb-4">Tambah Tags</a>

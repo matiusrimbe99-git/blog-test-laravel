@@ -1,6 +1,7 @@
 @extends('template-backend.home')
 @section('title', 'MS Website | User')
 @section('sub-judul','Daftar User')
+@section('nav-menu','Daftar User')
 @section('content')
 
 <div class="col-lg-12 col-md-12 col-12 col-sm-12 p-0">

@@ -29,11 +29,17 @@ Route::get('/list-category/{category}', [BlogController::class, 'listCategory'])
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
     Route::resource('/category', CategoryController::class);
     Route::resource('/tag', TagController::class);
+
     Route::get('/post/trash', [PostController::class, 'viewTrash'])->name('post.trash');
     Route::get('/post/restore/{id}', [PostController::class, 'restore'])->name('post.restore');
     Route::delete('/post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+
     Route::resource('/post', PostController::class);
+
+    Route::get('/user/edit-profil', [UserController::class, 'editProfil'])->name('user.edit-profil');
+    Route::patch('/user/update-profil', [UserController::class, 'updateProfil'])->name('user.update-profil');
     Route::resource('/user', UserController::class);
 });

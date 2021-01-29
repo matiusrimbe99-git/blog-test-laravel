@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">MS Website</a>
+            <a href="{{ route('welcome') }}">MS Website</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">MS</a>
@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class=active><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-            <li class="menu-header">Starter</li>
+            <li class="menu-header">MASTER DATA</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-book-open"></i>
                     <span>Postingan</span></a>

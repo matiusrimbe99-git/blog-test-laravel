@@ -47,16 +47,14 @@
                                     style="width:100px">
                             </td>
                             <td class="text-nowrap">
-                                <form id="delete-post-form" action="{{ route('post.delete', $post->id) }}"
-                                    method="POST">
+                                <form id="delete-post" action="{{ route('post.delete', $post->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <a href="{{ route('post.restore', $post->id) }}"
-                                        class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Restore"><i
+                                        class="btn btn-info btn-action mr-1 swal-restore" data-toggle="tooltip" title="Restore"><i
                                             class="fas fa-arrow-circle-up"></i></a>
-                                    <button onclick="return 'Hai'" type="submit" id="delete-post"
-                                        class="btn btn-danger btn-action" data-toggle="tooltip" title="Hapus"><i
-                                            class="fas fa-trash"></i></button>
+                                    <button type="submit" class="btn btn-danger btn-action swal-delete" data-toggle="tooltip"
+                                        title="Hapus"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
 
@@ -74,24 +72,4 @@
 @push('custom_script')
 <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('assets/js/page/modules-sweetalert.js') }}"></script>
-@if (Session::has('post_restore'))
-<script>
-    swal({
-    title: "Berhasil",
-    text: "{{ Session::get('post_restore') }}",
-    icon: "success",
-    button: "Tutup",
-    });
-</script>
-@endif
-@if (Session::has('post_delete'))
-<script>
-    swal({
-    title: "Berhasil",
-    text: "{{ Session::get('post_delete') }}",
-    icon: "success",
-    button: "Tutup",
-    });
-</script>
-@endif
 @endpush

@@ -78,7 +78,7 @@ class PostController extends Controller
         $post->tags()->attach($request->tags);
 
         $image->move('uploads/posts/', $new_image);
-        return redirect()->back()->with('post_store', 'Postingan berhasil ditambahkan');
+        return redirect()->back();
     }
 
     /**
@@ -161,7 +161,7 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
         $post->update($post_data);
-        return redirect()->route('post.index')->with('post_update', 'Postingan berhasil diupdate');
+        return redirect()->route('post.index')->with('post_update', 'Data berhasil diperbarui!');
     }
 
     /**
@@ -174,7 +174,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect()->back()->with('post_trash', 'Postingan dipindahkan ke Daftar Sampah Postingan');
+        return redirect()->back();
     }
 
     public function viewTrash()
@@ -187,13 +187,13 @@ class PostController extends Controller
     {
         $post = Post::withTrashed()->where('id', $id)->first();
         $post->restore();
-        return redirect()->back()->with('post_restore', 'Postingan berhasil direstore ke Daftar Postingan');
+        return redirect()->back();
     }
 
     public function delete($id)
     {
         $post = Post::withTrashed()->where('id', $id)->first();
         $post->forceDelete();
-        return redirect()->back()->with('post_delete', 'Postingan berhasil dihapus permanen');
+        return redirect()->back();
     }
 }

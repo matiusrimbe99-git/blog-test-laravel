@@ -70,7 +70,8 @@
     title: "Gagal",
     text: "{{ $errors->first() }}",
     icon: "error",
-    button: "Tutup",
+    button: false,
+    timer: 2000,
     });
 </script>
 

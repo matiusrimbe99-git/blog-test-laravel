@@ -16,27 +16,27 @@
     <div class="col-12 col-md-12 col-lg-5">
         <div class="card profile-widget">
             <div class="profile-widget-header">
-                <img alt="image" src="{{ asset(Auth::user()->image) }}"
-                    class="rounded-circle profile-widget-picture">
+                <img alt="image" src="{{ asset(Auth::user()->image) }}" class="rounded-circle profile-widget-picture">
                 <div class="profile-widget-items">
                     <div class="profile-widget-item">
                         <div class="profile-widget-item-label">@if (Auth::user()->type_user == 1)
-                        Administrator
-                        @else
-                        Penulis
-                        @endif</div>
+                            Administrator
+                            @else
+                            Penulis
+                            @endif</div>
                         <div class="profile-widget-item-value">{{ Auth::user()->name }}</div>
                     </div>
                     <div class="profile-widget-item">
                         <div class="profile-widget-item-label">Terdaftar</div>
-                        <div class="profile-widget-item-value"> {{ Auth::user()->created_at }} 
+                        <div class="profile-widget-item-value"> {{ Auth::user()->created_at }}
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="profile-widget-description">
-                <div class="profile-widget-name">{{ Auth::user()->name }} <div class="text-muted d-inline font-weight-normal">
+                <div class="profile-widget-name">{{ Auth::user()->name }} <div
+                        class="text-muted d-inline font-weight-normal">
                         <div class="slash"></div> @if (Auth::user()->type_user == 1)
                         Administrator
                         @else
@@ -50,7 +50,8 @@
     </div>
     <div class="col-12 col-md-12 col-lg-7">
         <div class="card">
-            <form method="post" action="{{ route('user.update-profil') }}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+            <form method="post" action="{{ route('user.update-profil') }}" class="needs-validation" novalidate=""
+                enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <div class="card-header">
@@ -60,7 +61,8 @@
                     <div class="row">
                         <div class="form-group col-md-12 col-12">
                             <label>Nama</label>
-                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" required="">
+                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}"
+                                required="">
                             <div class="invalid-feedback">
                                 Masukkan nama Anda
                             </div>
@@ -69,7 +71,8 @@
                     <div class="row">
                         <div class="form-group col-md-12 col-12">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}" readonly>
+                            <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}"
+                                readonly>
                         </div>
                     </div>
                     <div class="row">

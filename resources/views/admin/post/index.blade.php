@@ -52,7 +52,7 @@
                                     <a href="{{ route('post.edit', $post->id) }}"
                                         class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i
                                             class="fas fa-pencil-alt"></i></a>
-                                    <button type="submit" class="btn btn-danger btn-action" data-toggle="tooltip"
+                                    <button type="submit" class="btn btn-danger btn-action swal-trash" data-toggle="tooltip"
                                         title="Hapus"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
@@ -73,18 +73,8 @@
 @if (Session::has('post_update'))
 <script>
     swal({
-    title: "Berhasil",
+    title: "Selamat",
     text: "{{ Session::get('post_update') }}",
-    icon: "success",
-    button: "Tutup",
-    });
-</script>
-@endif
-@if (Session::has('post_trash'))
-<script>
-    swal({
-    title: "Berhasil",
-    text: "{{ Session::get('post_trash') }}",
     icon: "success",
     button: "Tutup",
     });

@@ -23,9 +23,11 @@
 <script src="{{asset('assets/js/stisla.js')}}"></script>
 
 <!-- JS Libraries -->
+<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 @stack('custom_script')
 
 <!-- Page Specific JS File -->
+<script src="{{ asset('assets/js/page/modules-sweetalert.js') }}"></script>
 @stack('custom_script')
 
 

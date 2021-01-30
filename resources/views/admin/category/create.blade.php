@@ -25,7 +25,6 @@
 </div>
 @endsection
 @push('custom_script')
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 <!-- Flash Category -->
 @if (Session::has('category_store'))
 <script>

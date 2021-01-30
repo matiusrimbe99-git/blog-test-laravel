@@ -69,7 +69,3 @@
 </div>
 <div class=" pagination justify-content-center">{{ $posts->links() }}</div>
 @endsection
-@push('custom_script')
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-<script src="{{ asset('assets/js/page/modules-sweetalert.js') }}"></script>
-@endpush

@@ -26,8 +26,6 @@
 </div>
 @endsection
 @push('custom_script')
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-
 @if (count($errors)>0)
 <script>
     swal({

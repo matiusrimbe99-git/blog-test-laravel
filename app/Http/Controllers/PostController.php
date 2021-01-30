@@ -78,7 +78,7 @@ class PostController extends Controller
         $post->tags()->attach($request->tags);
 
         $image->move('uploads/posts/', $new_image);
-        return redirect()->back();
+        return redirect()->back()->with('post_store', 'Data berhasil dibuat!');
     }
 
     /**

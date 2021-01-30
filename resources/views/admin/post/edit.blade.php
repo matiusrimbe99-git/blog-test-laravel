@@ -61,8 +61,6 @@
 @endsection
 @push('custom_script')
 <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-<script src="{{ asset('assets/js/page/modules-sweetalert.js') }}"></script>
 
 @if (count($errors)>0)
 <script>

@@ -51,7 +51,6 @@
 
 @endsection
 @push('custom_script')
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 <!-- Flash tag -->
 @if (Session::has('tag_update'))
 <script>

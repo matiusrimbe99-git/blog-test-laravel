@@ -99,7 +99,6 @@
 @endsection
 @push('custom_script')
 <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 @if (Session::has('user_update_profil'))
 <script>
     swal({

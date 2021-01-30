@@ -40,7 +40,6 @@
 </div>
 @endsection
 @push('custom_script')
-<script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 <!-- Flash user -->
 @if (Session::has('user_store'))
 <script>
